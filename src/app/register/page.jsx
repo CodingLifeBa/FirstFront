@@ -1,10 +1,14 @@
-"use client"
+"use client";
+import { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation'; // Importer useRouter
+import Link from 'next/link';
+import { register } from '../../../services/auth';
 
 const Container = styled.div`
-
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -65,52 +69,77 @@ const Button = styled.button`
   }
 `;
 
-
-const Signup = styled.a`
+const Signup = styled.div`
   display: block;
-  margin-top: 25rem;
+  margin-top: 1rem;
   color: #FFA500;
   cursor: pointer;
-  margin-left:-300px
-`;
-const StyledImage = styled(Image)`
- margin-top:-420px;
-margin-right:-270px;
+  text-align: center;
 `;
 
-export default function Login() {
+const StyledImage = styled(Image)`
+  margin-bottom: 2rem;
+`;
+
+export default function Register() {
+  const [nom, setNom] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const router = useRouter(); // Utiliser le hook useRouter
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await register(nom, email, password);
+      setMessage(response.msg);
+      router.push('/login');
+    } catch (error) {
+      setMessage(error.msg || 'Une erreur s\'est produite');
+    }
+  };
+
   return (
-    <>
-   
-       <Container>
-       <StyledImage
+    <Container>
+      <StyledImage
         src="/2.svg"
         alt="Description de l'image"
         width={170}
         height={90}
-        
       />
       <LoginBox>
-      
-  
-    
-        <Form>
-          <h4>Inscrivez vous en tant que Admin</h4>
-          <Input type="text" placeholder="Nom" required />
-
-          <Input type="email" placeholder="E-mail" required />
-          <Input type="password" placeholder="Mot de passe" required />
+        <Form onSubmit={handleSubmit}>
+          <Title>Inscrivez-vous en tant qu'Admin</Title>
+          <Input 
+            type="text" 
+            placeholder="Nom" 
+            value={nom}
+            onChange={(e) => setNom(e.target.value)}
+            required 
+          />
+          <Input 
+            type="email" 
+            placeholder="E-mail" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+          <Input 
+            type="password" 
+            placeholder="Mot de passe" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
           <CheckboxLabel>
-            <Checkbox type="checkbox" />
+            <Checkbox type="checkbox" required />
             Accepter les termes et la politique
           </CheckboxLabel>
           <Button type="submit">S'inscrire</Button>
         </Form>
+        {message && <p>{message}</p>}
       </LoginBox>
-      <Signup href="/login">Vous avez déja un compte? Se connecter</Signup>
-
+      <Signup style={{ color: 'white' }}>Vous avez déjà un compte? <Link href="/login" style={{ color: 'orange' }}>Se connecter</Link></Signup>
     </Container>
-    </>
-   
   );
 }

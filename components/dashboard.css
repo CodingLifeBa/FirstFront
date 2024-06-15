@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2d3e50;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 24px;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #3e4a5e;
+    margin-bottom: 20px; /* Ajout de marge en bas */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #3e4a5e;
+}
+
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar .user-info {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ajout de justification entre les éléments */
+    border-top: 1px solid #3e4a5e;
+}
+
+.sidebar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.sidebar .user-info .status {
+    color: #8bc34a;
+    font-size: 12px;
+}
+
+.main-content {
+    
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    color: #888;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px); /* Correction de la largeur */
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.card .material-icons {
+    font-size: 36px;
+    margin-right: 20px;
+}
+
+.card-content h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card-content p {
+    color: #888;
+}
+
+.card.purple {
+    background-color: #7e57c2;
+    color: #fff;
+}
+
+.card.teal {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+.card.yellow {
+    background-color: #fdd835;
+    color: #fff;
+}
+
+.card.red {
+    background-color: #ef5350;
+    color: #fff;
+}
+
+.card.blue {
+    background-color: #42a5f5;
+    color: #fff;
+}
+
+.card.blue-dark {
+    background-color: #1e88e5;
+    color: #fff;
+}
